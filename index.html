@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css?v=6">
+</head>
+<body>
+
+    <header class="site-header">
+        <nav class="nav-shell" aria-label="Primary navigation">
+            <a class="logo" href="#">EHIS CODE</a>
+
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about-me">About Me</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact Me</a></li>
+            </ul>
+
+            <button class="hamburger" type="button" aria-label="Open navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero" id="hero">
+
+
+        <div class="hero-conleft">
+            <h1 id="intro">Welcome to My Portfolio </h1>
+            <p>Engineering ideas into Digital Experiences</p>
+            
+            <div class="infobtn">
+                <button class="btn1 primary-btn" type="button">
+                    <span>View Projects</span>
+                    <span class="arrow-icon" aria-hidden="true">&rarr;</span>
+                </button>
+
+                <button class="btn1 secondary-btn" type="button" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">
+                    <span>Contact Me</span>
+                    <span class="user-icon" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <div class="skill-badges" aria-label="Technical skills">
+                <span class="skill-badge">
+                    <span class="skill-icon react-icon" aria-hidden="true">
+                        <span></span>
+                    </span>
+                    <span>React</span>
+                </span>
+                <span class="skill-badge">
+                    <span class="skill-icon js-icon" aria-hidden="true">JS</span>
+                    <span>JavaScript</span>
+                </span>
+                <span class="skill-badge">
+                    <span class="skill-icon python-icon" aria-hidden="true"></span>
+                    <span>Python</span>
+                </span>
+            </div>
+
+            <!-- <a href="#" class="btn">View My Work</a> -->
+        </div>
+
+        <div class="hero-conright">
+            <canvas id="controller-canvas" aria-label="3D Xbox One controller"></canvas>
+        </div>
+
+        <div class="scroll-down">
+            <span class="mouse">
+                <span class="mouse-dot"></span>
+            </span>
+            <p>Scroll to Discover</p>
+            <span class="down-arrow">⌄</span>
+        </div>
+
+    </section>
+
+
+        <!-- ABOUT ME SECTION -->
+        <section class="about-me" id="about-me">
+
+                <div class="about-image">
+                    <img src="assets/images/profile.png" alt="Daniel Ehi">
+
+                    <div class="image-card">
+                        <span class="image-card-icon">🎮</span>
+
+                        <div>
+                            <h4>Building Experiences</h4>
+                            <p>that people genuinely enjoy.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="about-content">
+
+
+                     <p class="section-title">ABOUT ME</p>
+
+                    <h2>
+                         Building Experiences.<br>
+                          Engineering Intelligence.
+                     </h2>
+
+                     <p class="about-text">
+                          I'm <span>Daniel Ehi</span>, Biomedical Engineer, Full-Stack Developer and AI Engineer passionate about creating modern web applications and intelligent digital solutions.
+
+                          My experience spans responsive frontend development, scalable software engineering, and training Large Language Models through RLHF workflows.
+
+                         Whether I'm developing responsive web applications or improving AI systems, I focus on building products that are intuitive, scalable, and impactful.
+
+                     </p>
+
+                     <div class="about-stats">
+                         <div class="stat-card">
+                             <span class="stat-icon">⚡</span>
+                             <strong>2+</strong>
+                             <p>Years Experience</p>
+                         </div>
+
+                         <div class="stat-card">
+                             <span class="stat-icon">💻</span>
+                             <strong>10+</strong>
+                             <p>Projects Built</p>
+                         </div>
+
+                         <div class="stat-card">
+                             <span class="stat-icon">🧠</span>
+                             <strong>6+</strong>
+                             <p>Technologies</p>
+                         </div>
+
+                         <div class="stat-card">
+                             <span class="stat-icon">💚</span>
+                             <strong>100%</strong>
+                             <p>Passion for Innovation</p>
+                         </div>
+                     </div>
+                 </div>
+
+         </section>
+         
+
+    <!-- SERVICES SECTION -->
+    <section class="services" id="services">
+        <div class="services-header">
+            <p class="section-title">SERVICES I PROVIDE</p>
+            <h2>
+                Smart Digital Solutions<br>
+                Built for Real-World Impact.
+            </h2>
+            <p class="services-intro">
+                I combine full-stack development, AI evaluation, prompt engineering, and data quality workflows to help brands, teams, and products become smarter, faster, and more reliable.
+            </p>
+        </div>
+
+        <div class="services-grid">
+            <article class="service-card featured-service">
+                <span class="service-number">01</span>
+                <div class="service-icon">🤖</div>
+                <h3>AI Training &amp; LLM Evaluation</h3>
+                <p>
+                    I evaluate model responses, improve factual accuracy, test safety behavior, and support RLHF workflows through structured prompt-response analysis.
+                </p>
+                <ul>
+                    <li>RLHF evaluation</li>
+                    <li>Prompt-response testing</li>
+                    <li>Hallucination and safety checks</li>
+                </ul>
+            </article>
+
+            <article class="service-card">
+                <span class="service-number">02</span>
+                <div class="service-icon">💻</div>
+                <h3>Responsive Web Development</h3>
+                <p>
+                    I design and build modern, responsive websites and frontend interfaces using clean HTML, CSS, JavaScript, React, and strong UI structure.
+                </p>
+                <ul>
+                    <li>Portfolio websites</li>
+                    <li>React interfaces</li>
+                    <li>Mobile-first layouts</li>
+                </ul>
+            </article>
+
+            <article class="service-card">
+                <span class="service-number">03</span>
+                <div class="service-icon">🧠</div>
+                <h3>Prompt Engineering &amp; AI Workflows</h3>
+                <p>
+                    I create structured prompts, reasoning checks, annotation guidelines, and AI workflows that help models produce clearer and more reliable outputs.
+                </p>
+                <ul>
+                    <li>Prompt design</li>
+                    <li>Rubric calibration</li>
+                    <li>AI reasoning tests</li>
+                </ul>
+            </article>
+
+            <article class="service-card">
+                <span class="service-number">04</span>
+                <div class="service-icon">📊</div>
+                <h3>Data QA &amp; Workflow Automation</h3>
+                <p>
+                    I organize, validate, and document data-heavy workflows using spreadsheet systems, QA checks, and structured documentation processes.
+                </p>
+                <ul>
+                    <li>Data validation</li>
+                    <li>QA documentation</li>
+                    <li>Workflow optimization</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+<section class="contact" id="contact">
+    <div class="contact-content">
+        <p class="section-title">CONTACT ME</p>
+
+        <h2>
+            Have a Project in Mind?<br>
+            Let’s Build Something Smart.
+        </h2>
+
+        <p class="contact-text">
+            Send me a message about a website, AI workflow, LLM evaluation task, or digital product idea. I’ll receive your request directly by email and get back to you as soon as possible.
+        </p>
+
+        <div class="contact-details">
+            <div class="contact-detail-card">
+                <span class="contact-detail-icon">📧</span>
+                <div>
+                    <h4>Email</h4>
+                    <a href="mailto:danielehikowoicho03@gmail.com">danielehikowoicho03@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="contact-detail-card">
+                <span class="contact-detail-icon">📍</span>
+                <div>
+                    <h4>Location</h4>
+                    <p>Abuja, Nigeria</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form class="contact-form" id="contact-form" action="https://formsubmit.co/danielehikowoicho03@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Portfolio Contact Message">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            <small class="error-message"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            <small class="error-message"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="6" placeholder="Tell me about your project or message..." required></textarea>
+            <small class="error-message"></small>
+        </div>
+
+        <button class="btn1 primary-btn submit-btn" type="submit">
+            <span>Send Message</span>
+            <span class="arrow-icon" aria-hidden="true">&rarr;</span>
+        </button>
+
+        <p class="form-status" id="form-status" aria-live="polite"></p>
+    </form>
+</section>
+
+               
+   <script src="script.js?v=6"></script>
+
+</body>
+</html>
