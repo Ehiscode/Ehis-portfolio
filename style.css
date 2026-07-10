@@ -1044,6 +1044,15 @@ a {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
+.honeypot-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
 .form-group {
     display: grid;
     gap: 9px;
@@ -1119,6 +1128,19 @@ a {
 
 .form-status.error {
     color: #ff7777;
+}
+
+.form-status.success {
+    color: var(--accent);
+}
+
+.form-status a {
+    color: var(--ink);
+    font-weight: 800;
+}
+
+.form-status a:hover {
+    color: var(--accent);
 }
 
 @media (min-width: 1800px) {
