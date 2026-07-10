@@ -20,6 +20,20 @@ if (header) {
 
 if (contactForm) {
     const submitButton = contactForm.querySelector('.submit-btn');
+    const submitButtonLabel = submitButton.querySelector('span:first-child');
+    const defaultButtonText = submitButtonLabel.textContent;
+    const formEndpoint = contactForm.dataset.ajaxEndpoint || contactForm.getAttribute('action');
+    const requestTimeout = 12000;
+
+    const setStatus = (message, type = '') => {
+        formStatus.textContent = message;
+        formStatus.className = type ? `form-status ${type}` : 'form-status';
+    };
+
+    const resetSubmitButton = () => {
+        submitButton.disabled = false;
+        submitButtonLabel.textContent = defaultButtonText;
+    };
 
     const showError = (field, message) => {
         const group = field.closest('.form-group');
@@ -35,47 +49,108 @@ if (contactForm) {
             group.querySelector('.error-message').textContent = '';
         });
 
-        formStatus.textContent = '';
-        formStatus.className = 'form-status';
+        setStatus('');
     };
 
     const isValidEmail = (email) => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     };
 
-    contactForm.addEventListener('submit', (event) => {
+    const buildMailtoLink = (name, email, message) => {
+        const subject = encodeURIComponent('New Portfolio Contact Message');
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+
+        return `mailto:danielehikowoicho03@gmail.com?subject=${subject}&body=${body}`;
+    };
+
+    contactForm.addEventListener('input', (event) => {
+        const field = event.target;
+        const group = field.closest('.form-group');
+
+        if (group) {
+            group.classList.remove('has-error');
+            group.querySelector('.error-message').textContent = '';
+        }
+
+        if (formStatus.classList.contains('error')) {
+            setStatus('');
+        }
+    });
+
+    contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
         clearErrors();
 
         const nameInput = contactForm.querySelector('#name');
         const emailInput = contactForm.querySelector('#email');
         const messageInput = contactForm.querySelector('#message');
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
         let hasError = false;
 
-        if (nameInput.value.trim().length < 2) {
+        if (name.length < 2) {
             showError(nameInput, 'Please enter your name.');
             hasError = true;
         }
 
-        if (!isValidEmail(emailInput.value.trim())) {
+        if (!isValidEmail(email)) {
             showError(emailInput, 'Please enter a valid email address.');
             hasError = true;
         }
 
-        if (messageInput.value.trim().length < 10) {
+        if (message.length < 10) {
             showError(messageInput, 'Please write a message of at least 10 characters.');
             hasError = true;
         }
 
         if (hasError) {
-            event.preventDefault();
-            formStatus.textContent = 'Please fix the highlighted fields before sending.';
-            formStatus.classList.add('error');
+            setStatus('Please fix the highlighted fields before sending.', 'error');
             return;
         }
 
         submitButton.disabled = true;
-        submitButton.querySelector('span:first-child').textContent = 'Sending...';
-        formStatus.textContent = 'Sending your message securely...';
+        submitButtonLabel.textContent = 'Sending...';
+        setStatus('Sending your message securely...');
+
+        const controller = new AbortController();
+        const timeoutId = window.setTimeout(() => controller.abort(), requestTimeout);
+
+        try {
+            const formData = new FormData(contactForm);
+            formData.set('name', name);
+            formData.set('email', email);
+            formData.set('message', message);
+
+            const response = await fetch(formEndpoint, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    Accept: 'application/json'
+                },
+                signal: controller.signal
+            });
+
+            if (!response.ok) {
+                throw new Error('FormSubmit could not accept the message.');
+            }
+
+            await response.json().catch(() => null);
+            contactForm.reset();
+            setStatus('Message sent. I will get back to you soon.', 'success');
+        } catch (error) {
+            const fallbackLink = buildMailtoLink(name, email, message);
+            const fallbackAnchor = document.createElement('a');
+
+            fallbackAnchor.href = fallbackLink;
+            fallbackAnchor.textContent = 'Open email instead';
+
+            setStatus('FormSubmit is taking too long. You can try again or email me directly.', 'error');
+            formStatus.append(' ', fallbackAnchor, '.');
+        } finally {
+            window.clearTimeout(timeoutId);
+            resetSubmitButton();
+        }
     });
 }
 
